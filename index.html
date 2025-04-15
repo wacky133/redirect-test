@@ -1,20 +1,63 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const target = urlParams.get('source') || 'https://tiktok.com';
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      flex-direction: column;
+      text-align: center;
+      color: #1f2937;
+    }
 
-      // Prevent loop: Only redirect if not already done
-      if (!sessionStorage.getItem('redirected')) {
-        sessionStorage.setItem('redirected', 'true');
-        window.location.href = target;
-      }
-    </script>
-  </head>
-  <body>
-    Redirecting to TikTok... <a href="https://tiktok.com">Click here</a> if it doesn’t work.
-  </body>
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      font-family: system-ui, sans-serif;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get("source");
+
+    if (target && !target.includes("authed=1")) {
+      const final = new URL(target);
+      final.searchParams.set("authed", "1");
+      window.location.href = final.toString();
+    }
+  </script>
+</head>
+<body>
+  <div class="logo">NICEKEY</div>
+  <div class="message">Redirecting to TikTok...</div>
+  <div><a href="https://tiktok.com">Click here</a> if it doesn’t work.</div>
+</body>
 </html>
