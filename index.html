@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=https://www.tiktok.com" />
+    <meta charset="UTF-8" />
     <title>Redirecting...</title>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const target = urlParams.get('source') || 'https://tiktok.com';
+
+      // Prevent loop: Only redirect if not already done
+      if (!sessionStorage.getItem('redirected')) {
+        sessionStorage.setItem('redirected', 'true');
+        window.location.href = target;
+      }
+    </script>
   </head>
   <body>
-    <p>Redirecting to TikTok... <a href="https://www.tiktok.com">Click here</a> if it doesn’t work.</p>
+    Redirecting to TikTok... <a href="https://tiktok.com">Click here</a> if it doesn’t work.
   </body>
 </html>
