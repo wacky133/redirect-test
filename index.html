@@ -1,58 +1,63 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting...</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: 'Orbitron', sans-serif;
-        background: #f4f4f4;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        color: #333;
-      }
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecting...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      flex-direction: column;
+      text-align: center;
+      color: #1f2937;
+    }
 
-      .logo {
-        font-size: 3rem;
-        color: #4A90E2;
-        margin-bottom: 10px;
-      }
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #3b82f6;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
 
-      .message {
-        font-size: 1rem;
-      }
+    .message {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      font-family: system-ui, sans-serif;
+    }
 
-      a {
-        color: #3366ff;
-        text-decoration: none;
-      }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
 
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
-    <script>
-      const params = new URLSearchParams(window.location.search);
-      const target = params.get("source");
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const target = params.get("source");
 
-      if (target) {
-        const redirectURL = new URL(target);
-        if (!redirectURL.searchParams.has("authed")) {
-          redirectURL.searchParams.set("authed", "1");
-          window.location.href = redirectURL.toString();
-        }
-      }
-    </script>
-  </head>
-  <body>
-    <div class="logo">NICEKEY</div>
-    <div class="message">
-      Redirecting to TikTok... <a id="manual" href="https://tiktok.com">Click here</a> if it doesn’t work.
-    </div>
-  </body>
+    if (target && !target.includes("authed=1")) {
+      const final = new URL(target);
+      final.searchParams.set("authed", "1");
+      window.location.href = final.toString();
+    }
+  </script>
+</head>
+<body>
+  <div class="logo">NICEKEY</div>
+  <div class="message">Redirecting to TikTok...</div>
+  <div><a href="https://tiktok.com">Click here</a> if it doesn’t work.</div>
+</body>
 </html>
